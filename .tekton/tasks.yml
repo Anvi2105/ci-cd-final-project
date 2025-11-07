@@ -11,3 +11,18 @@ spec:
         echo "🧹 Cleaning up workspace..."
         rm -rf /workspace/output/*
         echo "✅ Cleanup complete."
+---
+
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: nose-test
+spec:
+  steps:
+    - name: run-nose-tests
+      image: python:3.9-slim
+      script: |
+        #!/bin/bash
+        echo "🧪 Running nose tests..."
+        pip install nose
+        nosetests
